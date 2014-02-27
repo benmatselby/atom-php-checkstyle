@@ -1,0 +1,14 @@
+{
+  "name": "php-checkstyle",
+  "main": "./lib/php-checkstyle",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Checkstyle reporter for PHP, utilising phpcs, phpmd, php linter and php-cs-fixer",
+  "repository": "https://github.com/benmatselby/atom-php-checkstyle",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+  }
+}

@@ -1,0 +1,24 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Sniff this file': 'php-checkstyle:sniffThisFile',
+      'Show previous errors': 'php-checkstyle:showPreviousError',
+      'Goto next error': 'php-checkstyle:gotoNextError',
+      'Clear sniffer marks': 'php-checkstyle:clearSnifferMarks',
+      'Fix this file (php-cs-fixer.phar)': 'php-checkstyle:fixThisFile'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'PHP Checkstyle'
+      'submenu': [
+        { 'label': 'Sniff this file', 'command': 'php-checkstyle:sniffThisFile' },
+        { 'label': 'Show previous errors', 'command': 'php-checkstyle:showPreviousError' },
+        { 'label': 'Goto next error', 'command': 'php-checkstyle:gotoNextError' },
+        { 'label': 'Clear sniffer marks', 'command': 'php-checkstyle:clearSnifferMarks' },
+        { 'label': 'Fix this file (php-cs-fixer.phar)', 'command': 'php-checkstyle:fixThisFile' }
+      ]
+    ]
+  }
+]
