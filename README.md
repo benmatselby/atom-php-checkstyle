@@ -8,3 +8,11 @@ This plugin will support:
 * PHP Coding Standards Fixer
 
 This is currently very much work in progress
+
+## To do
+* Configuration options (Coding standard etc)
+* Execute on save (If config says so)
+* Display markers in the gutter
+* Implement other commands (linter, phpmd etc)
+* Spec tests
+* Same functionality as [sublime-phpcs](https://github.com/benmatselby/sublime-phpcs)
