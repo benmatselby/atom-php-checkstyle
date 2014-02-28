@@ -28,7 +28,7 @@ class CommandPhpcs
     getCommand: ->
         command = ''
         command += @config.executablePath + " --standard=" + @config.standard
-        command += " -n "  if @config.warnings is false
+        command += " -n"  if @config.warnings is false
         command += ' --report=checkstyle '
         command += @path
         return command
