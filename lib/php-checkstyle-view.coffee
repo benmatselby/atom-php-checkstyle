@@ -34,7 +34,17 @@ class PhpCheckstyleView extends SelectListView
             console.warn "Cannot run for non php files"
             return
 
-        phpcs = new commands.CommandPhpcs(editor.getPath())
+        executablePath = atom.config.get "php-checkstyle.phpcsExecutablePath"
+        standard = atom.config.get "php-checkstyle.phpcsStandard"
+        warnings = atom.config.get "php-checkstyle.phpcsDisplayWarnings"
+
+        config = {
+                'executablePath': executablePath,
+                'standard': standard,
+                'warnings': warnings
+            }
+
+        phpcs = new commands.CommandPhpcs(editor.getPath(), config)
         command = new commands.Shell(phpcs)
         self = this
         command.execute (err, stdout, stderr) ->

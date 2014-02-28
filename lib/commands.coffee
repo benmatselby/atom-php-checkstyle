@@ -21,16 +21,20 @@ class CommandPhpcs
 
     # Constructor
     # @param @path The path to the file we want to phpcs on
-    constructor: (@path) ->
+    constructor: (@path, @config) ->
 
     # Getter for the command to execute
     getCommand: ->
-        executable_path = atom.config.get "php-checkstyle.csExecutablePath"
-        standard = atom.config.get "php-checkstyle.csStandard"
-        return executable_path + " --standard=" + standard + " -n --report=checkstyle " + @path
+        command = ''
+        command += @config.executablePath + " --standard=" + @config.standard
+        command += " -n "  if @config.warnings is false
+        command += ' --report=checkstyle '
+        command += @path
+        return command
 
     # Given the report, now process into workable data
     process: (error, stdout, stderr) ->
+        console.log > "[php-checkstyle]" + stdout
         pattern = /.*line="(.+?)" column="(.+?)" severity="(.+?)" message="(.*)" source.*/g
         errorList = []
         while (line = pattern.exec(stdout)) isnt null

@@ -2,9 +2,10 @@ PhpCheckstyleView = require './php-checkstyle-view'
 
 module.exports =
 
-	configDefaults:
-	    csExecutablePath: '/usr/bin/phpcs'
-	    csStandard: 'PSR-2'
+    configDefaults:
+        phpcsExecutablePath: '/usr/bin/phpcs'
+        phpcsStandard: 'PSR2'
+        phpcsDisplayWarnings: false
 
     phpCheckstyleView: null
 
