@@ -1,4 +1,4 @@
-{$$, SelectListView} = require 'atom'
+{$$, Point, SelectListView} = require 'atom'
 commands = require './commands'
 
 # Sniffer view
@@ -79,8 +79,12 @@ class PhpCheckstyleView extends SelectListView
         @focusFilterEditor()
 
     # Confirmed location
-    confirmed: ({buffer, marker}) ->
-        for editor in atom.workspace.getEditors() when editor.getBuffer() is buffer
-            editor.setSelectedBufferRange(marker.getRange(), autoscroll: true)
+    # @param item The item that has been selected by the user
+    confirmed: (item) ->
+        editorView = atom.workspaceView.getActiveView()
+        position = new Point(parseInt(item.line - 1))
+        editorView.scrollToBufferPosition(position, center: true)
+        editorView.editor.setCursorBufferPosition(position)
+        editorView.editor.moveCursorToFirstCharacterOfLine()
 
 module.exports = PhpCheckstyleView
