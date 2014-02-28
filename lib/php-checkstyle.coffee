@@ -9,6 +9,7 @@ module.exports =
         phpcsDisplayWarnings: false
         phpcsFixerExecutablePath: '/usr/bin/php-cs-fixer'
         phpcsFixerLevel: 'all'
+        phpPath: '/usr/bin/php'
 
     phpCheckstyleView: null
 

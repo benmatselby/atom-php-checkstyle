@@ -72,3 +72,26 @@ describe "CommandPhpcsFixer", ->
 
         report = fixer.process('', stdout, '')
         expect(report).toEqual([['1', '/home/user/git/path/to/file']])
+
+
+describe "CommandLinter", ->
+    it 'should build the basic command with display_errors so we can capture output', ->
+        options = {
+            'executablePath': '/bin/php'
+        }
+        linter = new commands.CommandLinter('/path/to/file', options)
+        command = linter.getCommand()
+
+        expect(command).toBe "/bin/php -l -d display_errors=On /path/to/file"
+
+    it "should parse the report and if there is a parse error, return array with error inside", ->
+        linter = new commands.CommandLinter('/path/to/file', {})
+
+        stdout = """
+Parse error: parse error in a/random/file/somewhere.php on line 76
+Errors parsing a/random/file/somewhere.php
+
+        """
+
+        report = linter.process('', stdout, '')
+        expect(report).toEqual([['76', "Parse error: parse error in a/random/file/somewhere.php"]])

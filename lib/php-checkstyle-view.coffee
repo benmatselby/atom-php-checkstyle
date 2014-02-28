@@ -37,29 +37,37 @@ class PhpCheckstyleView extends SelectListView
             console.warn "Cannot run for non php files"
             return
 
-        executablePath = atom.config.get "php-checkstyle.phpcsExecutablePath"
-        standard = atom.config.get "php-checkstyle.phpcsStandard"
-        warnings = atom.config.get "php-checkstyle.phpcsDisplayWarnings"
+        linter = new commands.CommandLinter(editor.getPath(), {
+            'executablePath': atom.config.get "php-checkstyle.phpPath"
+        })
+        phpcs = new commands.CommandPhpcs(editor.getPath(), {
+            'executablePath': atom.config.get("php-checkstyle.phpcsExecutablePath"),
+            'standard': atom.config.get("php-checkstyle.phpcsStandard"),
+            'warnings': atom.config.get("php-checkstyle.phpcsDisplayWarnings")
+        })
 
-        config = {
-                'executablePath': executablePath,
-                'standard': standard,
-                'warnings': warnings
-            }
-
-        phpcs = new commands.CommandPhpcs(editor.getPath(), config)
-        command = new commands.Shell(phpcs)
+        shellCommands = [linter, phpcs]
+        shell = new commands.Shell(shellCommands)
         self = this
-        command.execute (err, stdout, stderr) ->
-            self.display err, stdout, stderr, phpcs
+        shell.execute (err, stdout, stderr) ->
+            self.display err, stdout, stderr, shellCommands
 
     # Get the error list from the command and display the result
-    display: (err, stdout, stderr, command) ->
+    # @param err           Any errors occured via exec
+    # @param stdout        Overall standard output
+    # @param stderr        Overall standard errors
+    # @param shellCommands The command objects we will interrogate for data
+    display: (err, stdout, stderr, shellCommands) ->
         editor = atom.workspace.getActiveEditor()
 
-        reportList = command.process(err, stdout, stderr)
-        attributes = class: 'php-checkstyle-error'
+        reportList = []
+        for command in shellCommands
+            commandReportList = command.process(err, stdout, stderr)
 
+            for listItem in commandReportList
+                reportList.push listItem
+
+        attributes = class: 'php-checkstyle-error'
         checkstyleList = []
         for row in reportList
             line = row[0]
