@@ -2,10 +2,10 @@
 
 This plugin will support:
 
-* PHP CodeSniffer (started)
+* PHP CodeSniffer (Some support)
 * PHP Linter
 * PHP Mess Dectector
-* PHP Coding Standards Fixer
+* PHP Coding Standards Fixer (Some support)
 
 This is currently very much work in progress
 

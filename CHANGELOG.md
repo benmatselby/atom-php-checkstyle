@@ -1,5 +1,10 @@
 #The Changelog
 
+##0.3.0
+* Ability to "Fix" a file using [PHP CS Fixer](http://cs.sensiolabs.org/)
+* Tidied up the naming convention in the menus
+
+
 ##0.2.0
 * Now has configuration options for phpcs thanks to [Phil Sturgeon](https://github.com/philsturgeon)
 * Now displays the line number alongside the error message in the list view

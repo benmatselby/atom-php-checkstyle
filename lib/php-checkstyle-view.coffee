@@ -6,7 +6,7 @@ class PhpCheckstyleView extends SelectListView
 
     # Initialise the view and register the sniffer command
     initialize: (serializeState) ->
-        atom.workspaceView.command "php-checkstyle:sniffThisFile", => @sniffThisFile()
+        atom.workspaceView.command "php-checkstyle:sniff-this-file", => @sniffThisFile()
         super
         @addClass('php-checkstyle-error-view overlay from-top')
 

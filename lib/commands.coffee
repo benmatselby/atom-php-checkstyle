@@ -20,7 +20,8 @@ class Shell
 class CommandPhpcs
 
     # Constructor
-    # @param @path The path to the file we want to phpcs on
+    # @param @path   The path to the file we want to phpcs on
+    # @param @config The configuration for the command (Such as coding standard)
     constructor: (@path, @config) ->
 
     # Getter for the command to execute
@@ -34,7 +35,10 @@ class CommandPhpcs
 
     # Given the report, now process into workable data
     process: (error, stdout, stderr) ->
-        console.log > "[php-checkstyle]" + stdout
+        console.log > "[php-checkstyle][stdout] " + stdout
+        console.log > "[php-checkstyle][error] " + error
+        console.log > "[php-checkstyle][stderr] " + stderr
+
         pattern = /.*line="(.+?)" column="(.+?)" severity="(.+?)" message="(.*)" source.*/g
         errorList = []
         while (line = pattern.exec(stdout)) isnt null
@@ -42,4 +46,37 @@ class CommandPhpcs
             errorList.push item
         return errorList
 
-module.exports = {Shell, CommandPhpcs}
+
+# PHP CS Fixer command
+class CommandPhpcsFixer
+
+    # Constructor
+    # @param @path   The path to the file we want to execute php-cs-fixer on
+    # @param @config The configuration for the command such as which level
+    constructor: (@path, @config) ->
+
+    # Formulate the php-cs-fixer command
+    getCommand: ->
+        command = ''
+        command += @config.executablePath
+        command += ' --level=' + @config.level
+        command += ' fix '
+        command += @path
+        return command
+
+    # Process the data out of php-cs-fixer
+    process: (error, stdout, stderr) ->
+        console.log > "[php-checkstyle][stdout] " + stdout
+        console.log > "[php-checkstyle][error] " + error
+        console.log > "[php-checkstyle][stderr] " + stderr
+
+        pattern = /.*(.+?)\) (.*)/g
+        errorList = []
+        while (line = pattern.exec(stdout)) isnt null
+            console.log line
+            item = [line[1], line[2]]
+            errorList.push item
+        return errorList
+
+
+module.exports = {Shell, CommandPhpcs, CommandPhpcsFixer}

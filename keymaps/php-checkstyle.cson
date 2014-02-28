@@ -8,4 +8,5 @@
 # For more detailed documentation see
 # https://atom.io/docs/latest/advanced/keymaps
 '.editor':
-  'cmd-ctrl-shift-s': 'php-checkstyle:sniffThisFile'
+  'cmd-k cmd-s': 'php-checkstyle:sniff-this-file'
+  'cmd-k cmd-f': 'php-checkstyle:fix-this-file'
