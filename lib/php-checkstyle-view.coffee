@@ -4,14 +4,17 @@ commands = require './commands'
 # Sniffer view
 class PhpCheckstyleView extends SelectListView
 
+    # Initialise the view and register the sniffer command
     initialize: (serializeState) ->
         atom.workspaceView.command "php-checkstyle:sniffThisFile", => @sniffThisFile()
         super
         @addClass('php-checkstyle-error-view overlay from-top')
 
+    #
     getFilterKey: ->
         'filterText'
 
+    #
     viewForItem: (checkstyleError) ->
         checkstyleErrorRow = checkstyleError.line
         checkstyleErrorLocation = "untitled:#{checkstyleErrorRow + 1}"
@@ -60,7 +63,7 @@ class PhpCheckstyleView extends SelectListView
         checkstyleList = []
         for row in reportList
             line = row[0]
-            message = row[1]
+            message = '(' + line + ') ' + row[1]
             range = [[line, 0], [line, 0]]
             displayBufferMarker = editor.displayBuffer.markBufferRange(range, attributes)
 
