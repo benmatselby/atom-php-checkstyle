@@ -1,5 +1,8 @@
 #The Changelog
 
+##0.4.1
+* Fixed php-cs-fixer command being broken by shell accepting an array of commands
+
 ##0.4.0
 * Linter functionality has been added
 * Mess Detector functionality has been added

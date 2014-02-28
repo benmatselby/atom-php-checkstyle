@@ -32,7 +32,7 @@ class PhpCsFixerView extends View
             }
 
         fixer = new commands.CommandPhpcsFixer(editor.getPath(), config)
-        command = new commands.Shell(fixer)
+        command = new commands.Shell([fixer])
         self = this
         command.execute (err, stdout, stderr) ->
             self.display err, stdout, stderr, fixer
