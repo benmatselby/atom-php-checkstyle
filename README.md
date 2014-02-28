@@ -10,7 +10,6 @@ This plugin will support:
 This is currently very much work in progress
 
 ## To do
-* Configuration options (Coding standard etc)
 * Execute on save (If config says so)
 * Display markers in the gutter
 * Implement other commands (linter, phpmd etc)
