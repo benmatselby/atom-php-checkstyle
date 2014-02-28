@@ -25,7 +25,9 @@ class CommandPhpcs
 
     # Getter for the command to execute
     getCommand: ->
-        return "phpcs --standard=PSR2 -n --report=checkstyle " + @path
+        executable_path = atom.config.get "php-checkstyle.csExecutablePath"
+        standard = atom.config.get "php-checkstyle.csStandard"
+        return executable_path + " --standard=" + standard + " -n --report=checkstyle " + @path
 
     # Given the report, now process into workable data
     process: (error, stdout, stderr) ->
