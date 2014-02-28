@@ -10,6 +10,8 @@ module.exports =
         phpcsFixerExecutablePath: '/usr/bin/php-cs-fixer'
         phpcsFixerLevel: 'all'
         phpPath: '/usr/bin/php'
+        phpmdExecutablePath: '/usr/bin/phpmd'
+        phpmdRuleSets: 'codesize,cleancode,controversial,naming,unusedcode'
 
     phpCheckstyleView: null
 

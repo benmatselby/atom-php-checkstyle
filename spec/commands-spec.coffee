@@ -95,3 +95,25 @@ Errors parsing a/random/file/somewhere.php
 
         report = linter.process('', stdout, '')
         expect(report).toEqual([['76', "Parse error: parse error in a/random/file/somewhere.php"]])
+
+
+describe "CommandMessDetector", ->
+    it 'should build the basic command with display_errors so we can capture output', ->
+        options = {
+            'executablePath': '/bin/phpmd',
+            'ruleSets': 'a,b,c,d'
+        }
+        messDetector = new commands.CommandMessDetector('/path/to/file', options)
+        command = messDetector.getCommand()
+
+        expect(command).toBe "/bin/phpmd /path/to/file text a,b,c,d"
+
+    it "should parse the report and if there are any errors, return array with the errors inside", ->
+        messDetector = new commands.CommandMessDetector('/path/to/file', {})
+
+        stdout = """
+/path/to/file:87	Avoid unused local variables such as '$unused'.
+        """
+
+        report = messDetector.process('', stdout, '')
+        expect(report).toEqual([['87', "Avoid unused local variables such as '$unused'."]])

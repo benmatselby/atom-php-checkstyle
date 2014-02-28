@@ -45,8 +45,12 @@ class PhpCheckstyleView extends SelectListView
             'standard': atom.config.get("php-checkstyle.phpcsStandard"),
             'warnings': atom.config.get("php-checkstyle.phpcsDisplayWarnings")
         })
+        messDetector= new commands.CommandMessDetector(editor.getPath(), {
+            'executablePath': atom.config.get("php-checkstyle.phpmdExecutablePath"),
+            'ruleSets': atom.config.get("php-checkstyle.phpmdRuleSets")
+        })
 
-        shellCommands = [linter, phpcs]
+        shellCommands = [linter, phpcs, messDetector]
         shell = new commands.Shell(shellCommands)
         self = this
         shell.execute (err, stdout, stderr) ->

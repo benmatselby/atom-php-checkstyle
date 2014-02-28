@@ -2,6 +2,7 @@
 
 ##0.4.0
 * Linter functionality has been added
+* Mess Detector functionality has been added
 
 ##0.3.0
 * Ability to "Fix" a file using [PHP CS Fixer](http://cs.sensiolabs.org/)

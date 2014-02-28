@@ -76,6 +76,32 @@ class CommandLinter
         return errorList
 
 
+# Mess Detection command (utilising phpmd)
+class CommandMessDetector
+
+    # Constructor
+    # @param @path   The path to the file we want to phpmd on
+    # @param @config The configuration for the command (Such as coding standard)
+    constructor: (@path, @config) ->
+
+    # Getter for the command to execute
+    getCommand: ->
+        command = @config.executablePath + ' ' + @path + ' text ' + @config.ruleSets
+        return command
+
+    # Given the report, now process into workable data
+    # @param err    Any errors occured via exec
+    # @param stdout Overall standard output
+    # @param stderr Overall standard errors
+    process: (error, stdout, stderr) ->
+        pattern = /.*:(\d+)[ \t]+(.*)/g
+        errorList = []
+        while (line = pattern.exec(stdout)) isnt null
+            item = [line[1], line[2]]
+            errorList.push item
+        return errorList
+
+
 # PHP CS Fixer command
 class CommandPhpcsFixer
 
@@ -106,4 +132,4 @@ class CommandPhpcsFixer
         return errorList
 
 
-module.exports = {Shell, CommandPhpcs, CommandLinter,CommandPhpcsFixer}
+module.exports = {Shell, CommandPhpcs, CommandLinter, CommandPhpcsFixer, CommandMessDetector}
