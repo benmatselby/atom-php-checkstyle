@@ -1,36 +1,22 @@
 {$$, Point, SelectListView} = require 'atom'
 commands = require './commands'
+PhpCheckstyleBaseView = require './php-checkstyle-base-view'
 
-class PhpCsFixerView extends SelectListView
+# View for the php-cs-fixer commands
+class PhpCsFixerView extends PhpCheckstyleBaseView
+
     # Initialise the view and register the command we need
     initialize: (serializeState) ->
         atom.workspaceView.command "php-checkstyle:fix-this-file", => @fixThisFile()
         super
         @addClass('php-checkstyle-error-view overlay from-top')
 
-    # Returns an object that can be retrieved when package is activated
-    serialize: ->
-
-    #
-    viewForItem: (checkstyleError) ->
-        checkstyleErrorRow = checkstyleError.line
-        checkstyleErrorLocation = "untitled:#{checkstyleErrorRow + 1}"
-        lineText = checkstyleError.message
-
-        $$ ->
-          if lineText
-            @li class: 'php-checkstyle-error two-lines', =>
-              @div checkstyleError, class: 'primary-line'
-              @div lineText, class: 'secondary-line line-text'
-          else
-            @li class: 'php-checkstyle-error', =>
-              @div checkstyleError, class: 'primary-line'
 
     # Fix the open file
     fixThisFile: ->
         editor = atom.workspace.getActiveEditor()
 
-        unless editor.getGrammar().scopeName is 'text.html.php' or 'source.php'
+        unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             console.warn "Cannot run for non php files"
             return
 
@@ -69,15 +55,5 @@ class PhpCsFixerView extends SelectListView
         @storeFocusedElement()
         atom.workspaceView.append(this)
         @focusFilterEditor()
-
-    # Confirmed location
-    # @param item The item that has been selected by the user
-    confirmed: (item) ->
-        editorView = atom.workspaceView.getActiveView()
-        position = new Point(parseInt(item.line - 1))
-        editorView.scrollToBufferPosition(position, center: true)
-        editorView.editor.setCursorBufferPosition(position)
-        editorView.editor.moveCursorToFirstCharacterOfLine()
-
 
 module.exports = PhpCsFixerView

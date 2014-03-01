@@ -1,8 +1,9 @@
 {$$, Point, SelectListView} = require 'atom'
 commands = require './commands'
+PhpCheckstyleBaseView = require './php-checkstyle-base-view'
 
-# Sniffer view
-class PhpCheckstyleView extends SelectListView
+# View for the sniffer commands
+class PhpCheckstyleView extends PhpCheckstyleBaseView
 
     # Initialise the view and register the sniffer command
     initialize: (serializeState) ->
@@ -10,30 +11,12 @@ class PhpCheckstyleView extends SelectListView
         super
         @addClass('php-checkstyle-error-view overlay from-top')
 
-    #
-    getFilterKey: ->
-        'filterText'
-
-    #
-    viewForItem: (checkstyleError) ->
-        checkstyleErrorRow = checkstyleError.line
-        checkstyleErrorLocation = "untitled:#{checkstyleErrorRow + 1}"
-        lineText = checkstyleError.message
-
-        $$ ->
-          if lineText
-            @li class: 'php-checkstyle-error two-lines', =>
-              @div checkstyleError, class: 'primary-line'
-              @div lineText, class: 'secondary-line line-text'
-          else
-            @li class: 'php-checkstyle-error', =>
-              @div checkstyleError, class: 'primary-line'
 
     # Sniff the open file with all of the commands we have
     sniffThisFile: ->
         editor = atom.workspace.getActiveEditor()
 
-        unless editor.getGrammar().scopeName is 'text.html.php' or 'source.php'
+        unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             console.warn "Cannot run for non php files"
             return
 
@@ -62,8 +45,6 @@ class PhpCheckstyleView extends SelectListView
     # @param stderr        Overall standard errors
     # @param shellCommands The command objects we will interrogate for data
     display: (err, stdout, stderr, shellCommands) ->
-        editor = atom.workspace.getActiveEditor()
-
         reportList = []
         for command in shellCommands
             commandReportList = command.process(err, stdout, stderr)
@@ -71,13 +52,10 @@ class PhpCheckstyleView extends SelectListView
             for listItem in commandReportList
                 reportList.push listItem
 
-        attributes = class: 'php-checkstyle-error'
         checkstyleList = []
         for row in reportList
             line = row[0]
             message = '(' + line + ') ' + row[1]
-            range = [[line, 0], [line, 0]]
-
             checkstyleError = {line, message}
             checkstyleList.push(checkstyleError)
 
@@ -85,14 +63,5 @@ class PhpCheckstyleView extends SelectListView
         @storeFocusedElement()
         atom.workspaceView.append(this)
         @focusFilterEditor()
-
-    # Confirmed location
-    # @param item The item that has been selected by the user
-    confirmed: (item) ->
-        editorView = atom.workspaceView.getActiveView()
-        position = new Point(parseInt(item.line - 1))
-        editorView.scrollToBufferPosition(position, center: true)
-        editorView.editor.setCursorBufferPosition(position)
-        editorView.editor.moveCursorToFirstCharacterOfLine()
 
 module.exports = PhpCheckstyleView
