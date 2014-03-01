@@ -40,7 +40,6 @@ class PhpCsFixerView extends View
     # Get the error list from the command and display the result
     display: (err, stdout, stderr, command) ->
         report = command.process(err, stdout, stderr)
-        # for row in report
-            # console.log row
+        console.log stdout
 
 module.exports = PhpCsFixerView
