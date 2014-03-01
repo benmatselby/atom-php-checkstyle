@@ -19,7 +19,7 @@ class PhpCsFixerView extends View
     fixThisFile: ->
         editor = atom.workspace.getActiveEditor()
 
-        unless editor.getGrammar().scopeName is 'text.html.php'
+        unless editor.getGrammar().scopeName is 'text.html.php' or 'source.php'
             console.warn "Cannot run for non php files"
             return
 
