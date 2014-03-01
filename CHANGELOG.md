@@ -1,5 +1,9 @@
 #The Changelog
 
+##0.4.2
+* Add verbosity to php-cs-fixer command until I figure out a UI mechanism to display success|fail
+* Define multiple scope names for PHP, as suspect they may change based on open issues in language-php
+
 ##0.4.1
 * Fixed php-cs-fixer command being broken by shell accepting an array of commands
 
