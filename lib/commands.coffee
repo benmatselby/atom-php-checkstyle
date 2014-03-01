@@ -115,6 +115,7 @@ class CommandPhpcsFixer
         command = ''
         command += @config.executablePath
         command += ' --level=' + @config.level
+        command += ' --verbose'
         command += ' fix '
         command += @path
         return command
