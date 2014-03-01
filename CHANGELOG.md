@@ -1,5 +1,9 @@
 #The Changelog
 
+##0.5.0
+* Display what has been fixed by php-cs-fixer
+* Display a message to say nothing was fixed by the php-cs-fixer, if no changes were made
+
 ##0.4.2
 * Add verbosity to php-cs-fixer command until I figure out a UI mechanism to display success|fail
 * Define multiple scope names for PHP, as suspect they may change based on open issues in language-php

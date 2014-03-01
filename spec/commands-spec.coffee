@@ -67,11 +67,11 @@ describe "CommandPhpcsFixer", ->
         fixer = new commands.CommandPhpcsFixer('/path/to/file', {})
 
         stdout = """
- 1) /home/user/git/path/to/file
+ 1) /home/user/git/path/to/file (braces, something, else)
         """
 
         report = fixer.process('', stdout, '')
-        expect(report).toEqual([['1', '/home/user/git/path/to/file']])
+        expect(report).toEqual([[0, 'Fixed: (braces, something, else)']])
 
 
 describe "CommandLinter", ->

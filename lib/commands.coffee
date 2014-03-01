@@ -125,10 +125,10 @@ class CommandPhpcsFixer
     # @param stdout Overall standard output
     # @param stderr Overall standard errors
     process: (error, stdout, stderr) ->
-        pattern = /.*(.+?)\) (.*)/g
+        pattern = /.*(.+?)\) (.*) (\(.*\))/g
         errorList = []
         while (line = pattern.exec(stdout)) isnt null
-            item = [line[1], line[2]]
+            item = [0, "Fixed: " + line[3]]
             errorList.push item
         return errorList
 

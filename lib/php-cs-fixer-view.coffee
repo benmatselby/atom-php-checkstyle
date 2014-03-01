@@ -1,19 +1,30 @@
-{View} = require 'atom'
+{$$, Point, SelectListView} = require 'atom'
 commands = require './commands'
 
-class PhpCsFixerView extends View
-    @content: ->
-        @div class: 'php-checkstyle-php-cs-fixer overlay from-top', =>
-
+class PhpCsFixerView extends SelectListView
+    # Initialise the view and register the command we need
     initialize: (serializeState) ->
         atom.workspaceView.command "php-checkstyle:fix-this-file", => @fixThisFile()
+        super
+        @addClass('php-checkstyle-error-view overlay from-top')
 
     # Returns an object that can be retrieved when package is activated
     serialize: ->
 
-    # Tear down any state and detach
-    destroy: ->
-        @detach()
+    #
+    viewForItem: (checkstyleError) ->
+        checkstyleErrorRow = checkstyleError.line
+        checkstyleErrorLocation = "untitled:#{checkstyleErrorRow + 1}"
+        lineText = checkstyleError.message
+
+        $$ ->
+          if lineText
+            @li class: 'php-checkstyle-error two-lines', =>
+              @div checkstyleError, class: 'primary-line'
+              @div lineText, class: 'secondary-line line-text'
+          else
+            @li class: 'php-checkstyle-error', =>
+              @div checkstyleError, class: 'primary-line'
 
     # Fix the open file
     fixThisFile: ->
@@ -40,6 +51,33 @@ class PhpCsFixerView extends View
     # Get the error list from the command and display the result
     display: (err, stdout, stderr, command) ->
         report = command.process(err, stdout, stderr)
-        console.log stdout
+
+        list = []
+        if report.length > 0
+            for reportItem in report
+                line = reportItem[0]
+                message = reportItem[1]
+                listItem = {line, message}
+                list.push(listItem)
+        else
+            line = 0
+            message = 'Nothing to fix'
+            listItem = {line, message}
+            list.push(listItem)
+
+        @setItems(list)
+        @storeFocusedElement()
+        atom.workspaceView.append(this)
+        @focusFilterEditor()
+
+    # Confirmed location
+    # @param item The item that has been selected by the user
+    confirmed: (item) ->
+        editorView = atom.workspaceView.getActiveView()
+        position = new Point(parseInt(item.line - 1))
+        editorView.scrollToBufferPosition(position, center: true)
+        editorView.editor.setCursorBufferPosition(position)
+        editorView.editor.moveCursorToFirstCharacterOfLine()
+
 
 module.exports = PhpCsFixerView
