@@ -1,7 +1,7 @@
 {
   "name": "php-checkstyle",
   "main": "./lib/php-checkstyle",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "private": true,
   "description": "Checkstyle reporter for PHP, utilising phpcs, phpmd, php linter and php-cs-fixer",
   "repository": "https://github.com/benmatselby/atom-php-checkstyle",
