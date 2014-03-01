@@ -77,13 +77,9 @@ class PhpCheckstyleView extends SelectListView
             line = row[0]
             message = '(' + line + ') ' + row[1]
             range = [[line, 0], [line, 0]]
-            displayBufferMarker = editor.displayBuffer.markBufferRange(range, attributes)
 
             checkstyleError = {line, message}
             checkstyleList.push(checkstyleError)
-
-            displayBufferMarker.on 'changed', ({isValid}) ->
-                displayBufferMarker.destroy() unless isValid
 
         @setItems(checkstyleList)
         @storeFocusedElement()
