@@ -61,7 +61,7 @@ describe "CommandPhpcsFixer", ->
         fixer = new commands.CommandPhpcsFixer('/path/to/file', options)
         command = fixer.getCommand()
 
-        expect(command).toBe "/bin/php-cs-fixer --level=all fix /path/to/file"
+        expect(command).toBe "/bin/php-cs-fixer --level=all --verbose fix /path/to/file"
 
     it 'should parse the report and if there are errors, make an array [fixNumber!, message]', ->
         fixer = new commands.CommandPhpcsFixer('/path/to/file', {})
