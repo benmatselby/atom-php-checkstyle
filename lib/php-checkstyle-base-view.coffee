@@ -26,4 +26,8 @@ class PhpCheckstyleBaseView extends SelectListView
     editorView.editor.setCursorBufferPosition(position)
     editorView.editor.moveCursorToFirstCharacterOfLine()
 
+  # Get the filter key for filtering the select list
+  getFilterKey: ->
+    'message'
+
 module.exports = PhpCheckstyleBaseView

@@ -1,5 +1,8 @@
 #The Changelog
 
+##0.6.1
+* Fixed sorting bug by implementing getFilterKey
+
 ##0.6.0
 * Fixed [GH-7](https://github.com/benmatselby/atom-php-checkstyle/issues/7), which is to unescape html entities for list view. Thanks to [Ciaran Downey](https://github.com/ciarand).
 * Started to follow GH coding standard for coffeescript
