@@ -1,5 +1,6 @@
 {$$, Point, SelectListView} = require 'atom'
 commands = require './commands'
+_ = require 'underscore-plus'
 PhpCheckstyleBaseView = require './php-checkstyle-base-view'
 
 # View for the sniffer commands
@@ -55,7 +56,7 @@ class PhpCheckstyleView extends PhpCheckstyleBaseView
         checkstyleList = []
         for row in reportList
             line = row[0]
-            message = '(' + line + ') ' + row[1]
+            message = '(' + line + ') ' + _.unescape(row[1])
             checkstyleError = {line, message}
             checkstyleList.push(checkstyleError)
 
