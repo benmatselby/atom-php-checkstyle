@@ -1,5 +1,9 @@
 #The Changelog
 
+##0.6.0
+* Fixed [GH-7](https://github.com/benmatselby/atom-php-checkstyle/issues/7), which is to unescape html entities for list view. Thanks to [Ciaran Downey](https://github.com/ciarand).
+* Started to follow GH coding standard for coffeescript
+
 ##0.5.0
 * Display what has been fixed by php-cs-fixer
 * Display a message to say nothing was fixed by the php-cs-fixer, if no changes were made
