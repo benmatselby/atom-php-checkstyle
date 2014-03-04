@@ -1,6 +1,6 @@
 {
   "name": "php-checkstyle",
-  "main": "./lib/php-checkstyle",
+  "main": "./lib/main",
   "version": "0.6.1",
   "private": true,
   "description": "Checkstyle reporter for PHP, utilising phpcs, phpmd, php linter and php-cs-fixer",

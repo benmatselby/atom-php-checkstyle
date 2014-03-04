@@ -6,6 +6,8 @@
 * Ability to toggle phpcs execution on|off when sniffing file
 * Ability to toggle phpmd execution on|off when sniffing file
 * Ability to toggle the linter when sniffing file
+* Pulled out controller methods into PhpCheckstyle class
+* Entry point moved to main.coffee and updated package.json
 
 ##0.6.1
 * Fixed sorting bug by implementing getFilterKey
