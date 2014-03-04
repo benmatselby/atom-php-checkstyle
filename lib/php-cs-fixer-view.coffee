@@ -6,11 +6,10 @@ PhpCheckstyleBaseView = require './php-checkstyle-base-view'
 class PhpCsFixerView extends PhpCheckstyleBaseView
 
   # Initialise the view and register the command we need
-  initialize: (serializeState) ->
+  initialize: () ->
     atom.workspaceView.command "php-checkstyle:fix-this-file", => @fixThisFile()
     super
     @addClass('php-checkstyle-error-view overlay from-top')
-
 
   # Fix the open file
   fixThisFile: ->
@@ -35,6 +34,11 @@ class PhpCsFixerView extends PhpCheckstyleBaseView
       self.display err, stdout, stderr, fixer
 
   # Get the error list from the command and display the result
+  #
+  # err      Any errors occured via exec
+  # stdout   Overall standard output
+  # stderr   Overall standard errors
+  # command  The fixer command
   display: (err, stdout, stderr, command) ->
     report = command.process(err, stdout, stderr)
 

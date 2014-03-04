@@ -13,14 +13,6 @@ module.exports =
     phpmdExecutablePath: '/usr/bin/phpmd'
     phpmdRuleSets: 'codesize,cleancode,controversial,naming,unusedcode'
 
-  phpCheckstyleView: null
-
-  activate: (state) ->
-    @phpCheckstyleView = new PhpCheckstyleView(state.phpCheckstyleViewState)
-    @phpCsFixerView = new PhpCsFixerView(state.phpCsFixerView)
-
-  deactivate: ->
-    @phpCheckstyleView.destroy()
-
-  serialize: ->
-    phpCheckstyleViewState: @phpCheckstyleView.serialize()
+  activate: ->
+        new PhpCheckstyleView()
+        new PhpCsFixerView()
