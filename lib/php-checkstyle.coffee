@@ -19,8 +19,7 @@ module.exports =
     @phpCheckstyleView = new PhpCheckstyleView(state.phpCheckstyleViewState)
     @phpCsFixerView = new PhpCsFixerView(state.phpCsFixerView)
 
-  deactivate: ->
-    @phpCheckstyleView.destroy()
+  deactivate: -> @phpCheckstyleView.cancel()
 
   serialize: ->
     phpCheckstyleViewState: @phpCheckstyleView.serialize()
