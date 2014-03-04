@@ -20,8 +20,6 @@ describe "CommandPhpcs", ->
     }
     phpcs = new commands.CommandPhpcs('/path/to/file', options)
     command = phpcs.getCommand()
-    console.log command
-    console.log "/bin/phpcs --standard=PSR2 -n --report=checkstyle /path/to/file"
     expect(command).toBe "/bin/phpcs --standard=PSR2 -n --report=checkstyle /path/to/file"
 
   it 'should parse the report and if there are errors, make an array [line, message]', ->

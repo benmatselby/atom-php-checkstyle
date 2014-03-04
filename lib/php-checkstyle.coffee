@@ -5,7 +5,6 @@ class PhpCheckstyle
 
   # Instantiate the views
   constructor: (listView, fixerView)->
-    console.log 'registered'
     @listView = listView
     @fixerView = fixerView
     atom.workspaceView.command "php-checkstyle:sniff-this-file", => @sniffThisFile()
