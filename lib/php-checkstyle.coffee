@@ -12,6 +12,7 @@ module.exports =
     phpPath: '/usr/bin/php'
     phpmdExecutablePath: '/usr/bin/phpmd'
     phpmdRuleSets: 'codesize,cleancode,controversial,naming,unusedcode'
+    renderGutterMarks: true
 
   activate: ->
         new PhpCheckstyleView()

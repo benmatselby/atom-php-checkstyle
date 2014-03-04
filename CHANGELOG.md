@@ -2,6 +2,7 @@
 
 ##0.7.0
 * Render gutter marks for sniffer errors
+* Ability to toggle gutter marks on|off
 
 ##0.6.1
 * Fixed sorting bug by implementing getFilterKey
