@@ -3,6 +3,9 @@
 ##0.7.0
 * Render gutter marks for sniffer errors
 * Ability to toggle gutter marks on|off
+* Ability to toggle phpcs execution on|off when sniffing file
+* Ability to toggle phpmd execution on|off when sniffing file
+* Ability to toggle the linter when sniffing file
 
 ##0.6.1
 * Fixed sorting bug by implementing getFilterKey

@@ -13,6 +13,9 @@ module.exports =
     phpmdExecutablePath: '/usr/bin/phpmd'
     phpmdRuleSets: 'codesize,cleancode,controversial,naming,unusedcode'
     renderGutterMarks: true
+    shouldExecutePhpcs: true
+    shouldExecutePhpmd: true
+    shouldExecuteLinter: true
 
   activate: ->
         new PhpCheckstyleView()

@@ -23,20 +23,29 @@ class PhpCheckstyleView extends PhpCheckstyleBaseView
       console.warn "Cannot run for non php files"
       return
 
-    linter = new commands.CommandLinter(editor.getPath(), {
-      'executablePath': atom.config.get "php-checkstyle.phpPath"
-    })
-    phpcs = new commands.CommandPhpcs(editor.getPath(), {
-      'executablePath': atom.config.get("php-checkstyle.phpcsExecutablePath"),
-      'standard': atom.config.get("php-checkstyle.phpcsStandard"),
-      'warnings': atom.config.get("php-checkstyle.phpcsDisplayWarnings")
-    })
-    messDetector= new commands.CommandMessDetector(editor.getPath(), {
-      'executablePath': atom.config.get("php-checkstyle.phpmdExecutablePath"),
-      'ruleSets': atom.config.get("php-checkstyle.phpmdRuleSets")
-    })
+    shellCommands = []
 
-    shellCommands = [linter, phpcs, messDetector]
+    if atom.config.get("php-checkstyle.shouldExecuteLinter") is true
+      linter = new commands.CommandLinter(editor.getPath(), {
+        'executablePath': atom.config.get "php-checkstyle.phpPath"
+      })
+      shellCommands.push(linter)
+
+    if atom.config.get("php-checkstyle.shouldExecutePhpcs") is true
+      phpcs = new commands.CommandPhpcs(editor.getPath(), {
+        'executablePath': atom.config.get("php-checkstyle.phpcsExecutablePath"),
+        'standard': atom.config.get("php-checkstyle.phpcsStandard"),
+        'warnings': atom.config.get("php-checkstyle.phpcsDisplayWarnings")
+      })
+      shellCommands.push(phpcs)
+
+    if atom.config.get("php-checkstyle.shouldExecutePhpmd") is true
+      messDetector= new commands.CommandMessDetector(editor.getPath(), {
+        'executablePath': atom.config.get("php-checkstyle.phpmdExecutablePath"),
+        'ruleSets': atom.config.get("php-checkstyle.phpmdRuleSets")
+      })
+      shellCommands.push(messDetector)
+
     shell = new commands.Shell(shellCommands)
     self = this
     shell.execute (err, stdout, stderr) ->
