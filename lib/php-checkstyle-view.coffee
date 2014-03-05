@@ -45,6 +45,7 @@ class PhpCheckstyleView extends PhpCheckstyleBaseView
   # Render items into the gutter
   renderGutter: () ->
     return unless atom.config.get "php-checkstyle.renderGutterMarks"
+    return unless @checkstyleList
     editorView = atom.workspaceView.getActiveView()
     return unless @checkstyleList[editorView.id]
 
