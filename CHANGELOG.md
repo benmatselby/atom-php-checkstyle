@@ -1,5 +1,9 @@
 #The Changelog
 
+##0.8.0
+* Ability to sniff on save [Implements GH-2](https://github.com/benmatselby/atom-php-checkstyle/issues/2)
+* Ability to toggle execution on save
+
 ##0.7.0
 * Render gutter marks for sniffer errors
 * Ability to toggle gutter marks on|off

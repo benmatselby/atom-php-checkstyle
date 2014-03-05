@@ -17,6 +17,7 @@ module.exports =
     shouldExecutePhpcs: true
     shouldExecutePhpmd: true
     shouldExecuteLinter: true
+    shouldExecuteOnSave: true
 
   # Activate the plugin
   activate: ->

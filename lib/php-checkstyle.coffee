@@ -1,17 +1,24 @@
+{Subscriber} = require 'emissary'
 commands = require './commands'
 
 # Main controller class
 class PhpCheckstyle
 
+  Subscriber.includeInto(this)
+
   # Instantiate the views
   constructor: (listView, fixerView)->
     @listView = listView
     @fixerView = fixerView
-    atom.workspaceView.command "php-checkstyle:sniff-this-file", => @sniffThisFile()
-    atom.workspaceView.command "php-checkstyle:fix-this-file", => @fixThisFile()
+    atom.workspaceView.command "php-checkstyle:sniff-this-file", => @sniffFile()
+    atom.workspaceView.command "php-checkstyle:fix-this-file", => @fixFile()
+
+    if atom.config.get("php-checkstyle.shouldExecuteOnSave") is true
+      atom.project.eachBuffer (buffer) =>
+        @subscribe buffer, 'saved', => @sniffFile()
 
   # Sniff the open file with all of the commands we have
-  sniffThisFile: ->
+  sniffFile: ->
     editor = atom.workspace.getActiveEditor()
     editorView = atom.workspaceView.getActiveView()
 
@@ -51,7 +58,7 @@ class PhpCheckstyle
       self.listView.renderGutter self.gutter
 
   # Fix the open file
-  fixThisFile: ->
+  fixFile: ->
     editor = atom.workspace.getActiveEditor()
 
     unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
