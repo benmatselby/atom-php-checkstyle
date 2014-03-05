@@ -1,5 +1,8 @@
 #The Changelog
 
+##0.9.0
+* Do not show list view if file is clean. Thanks to [postcasio](https://github.com/postcasio).
+
 ##0.8.0
 * Ability to sniff on save [Implements GH-2](https://github.com/benmatselby/atom-php-checkstyle/issues/2)
 * Ability to toggle execution on save
