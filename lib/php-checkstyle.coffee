@@ -50,12 +50,12 @@ class PhpCheckstyle
       shellCommands.push(messDetector)
 
     shell = new commands.Shell(shellCommands)
-    self = this
-    shell.execute (err, stdout, stderr) ->
-      self.listView.display err, stdout, stderr, shellCommands
 
-    editorView.on 'editor:display-updated', ->
-      self.listView.renderGutter self.gutter
+    shell.execute (err, stdout, stderr) =>
+      @listView.display err, stdout, stderr, shellCommands
+
+    editorView.on 'editor:display-updated', =>
+      @listView.renderGutter self.gutter
 
   # Fix the open file
   fixFile: ->
@@ -75,8 +75,8 @@ class PhpCheckstyle
 
     fixer = new commands.CommandPhpcsFixer(editor.getPath(), config)
     command = new commands.Shell([fixer])
-    self = this
-    command.execute (err, stdout, stderr) ->
-      self.fixerView.display err, stdout, stderr, fixer
+
+    command.execute (err, stdout, stderr) =>
+      @fixerView.display err, stdout, stderr, fixer
 
 module.exports = PhpCheckstyle
