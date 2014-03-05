@@ -38,6 +38,9 @@ class PhpCheckstyleView extends PhpCheckstyleBaseView
     @checkstyleList[editorView.id] = fileList
     @renderGutter()
     @setItems(fileList)
+    
+    return unless fileList.length > 0
+    
     @storeFocusedElement()
     atom.workspaceView.append(this)
     @focusFilterEditor()
