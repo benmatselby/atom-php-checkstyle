@@ -7,9 +7,15 @@ class PhpCheckstyle
   Subscriber.includeInto(this)
 
   # Instantiate the views
-  constructor: (listView, fixerView)->
+  #
+  # listView   The basic sniffer view
+  # fixerView  The PHP-CS-Fixer view
+  # gutterView The gutter view
+  constructor: (listView, fixerView, gutterView)->
     @listView = listView
     @fixerView = fixerView
+    @gutterView = gutterView
+
     atom.workspaceView.command "php-checkstyle:sniff-this-file", => @sniffFile()
     atom.workspaceView.command "php-checkstyle:fix-this-file", => @fixFile()
 
@@ -21,6 +27,7 @@ class PhpCheckstyle
   sniffFile: ->
     editor = atom.workspace.getActiveEditor()
     editorView = atom.workspaceView.getActiveView()
+    @checkstyleList= []
 
     unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
       console.warn "Cannot run for non php files"
@@ -59,10 +66,13 @@ class PhpCheckstyle
         for listItem in commandReportList
           reportList.push listItem
 
+      @checkstyleList[editorView.id] = reportList
+
       @listView.display reportList
+      @gutterView.display reportList
 
     editorView.on 'editor:display-updated', =>
-      @listView.renderGutter self.gutter
+      @gutterView.render()
 
   # Fix the open file
   fixFile: ->

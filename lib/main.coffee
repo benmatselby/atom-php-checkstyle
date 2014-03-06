@@ -1,6 +1,7 @@
 PhpCheckstyle = require './php-checkstyle'
 PhpCheckstyleView = require './php-checkstyle-view'
 PhpCsFixerView = require './php-cs-fixer-view'
+PhpCheckstyleGutterView = require './php-checkstyle-gutter-view'
 
 module.exports =
 
@@ -23,4 +24,6 @@ module.exports =
   activate: ->
     listView = new PhpCheckstyleView()
     fixerView = new PhpCsFixerView()
-    app = new PhpCheckstyle listView, fixerView
+    gutterView = new PhpCheckstyleGutterView()
+
+    app = new PhpCheckstyle listView, fixerView, gutterView

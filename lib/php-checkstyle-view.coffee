@@ -26,7 +26,6 @@ class PhpCheckstyleView extends PhpCheckstyleBaseView
       fileList.push(checkstyleError)
 
     @checkstyleList[editorView.id] = fileList
-    @renderGutter()
     @setItems(fileList)
 
     if fileList.length == 0
@@ -36,17 +35,5 @@ class PhpCheckstyleView extends PhpCheckstyleBaseView
     @storeFocusedElement()
     atom.workspaceView.append(this)
     @focusFilterEditor()
-
-  # Render items into the gutter
-  renderGutter: () ->
-    return unless atom.config.get "php-checkstyle.renderGutterMarks"
-    return unless @checkstyleList
-    editorView = atom.workspaceView.getActiveView()
-    return unless @checkstyleList[editorView.id]
-
-    gutter = editorView.gutter
-    gutter.removeClassFromAllLines('php-checkstyle-sniff-error')
-    for error in @checkstyleList[editorView.id]
-      gutter.addClassToLine(error.line - 1, 'php-checkstyle-sniff-error')
 
 module.exports = PhpCheckstyleView
