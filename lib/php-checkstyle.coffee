@@ -52,7 +52,14 @@ class PhpCheckstyle
     shell = new commands.Shell(shellCommands)
 
     shell.execute (err, stdout, stderr) =>
-      @listView.display err, stdout, stderr, shellCommands
+      reportList = []
+      for command in shellCommands
+        commandReportList = command.process(err, stdout, stderr)
+
+        for listItem in commandReportList
+          reportList.push listItem
+
+      @listView.display reportList
 
     editorView.on 'editor:display-updated', =>
       @listView.renderGutter self.gutter
@@ -77,6 +84,7 @@ class PhpCheckstyle
     command = new commands.Shell([fixer])
 
     command.execute (err, stdout, stderr) =>
-      @fixerView.display err, stdout, stderr, fixer
+      report = fixer.process(err, stdout, stderr)
+      @fixerView.display report
 
 module.exports = PhpCheckstyle

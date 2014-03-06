@@ -1,5 +1,8 @@
 #The Changelog
 
+##next
+* Structural changes to decouple app from views
+
 ##0.9.0
 * Do not show list view if file is clean. Thanks to [postcasio](https://github.com/postcasio).
 

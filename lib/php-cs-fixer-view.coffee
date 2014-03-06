@@ -12,13 +12,8 @@ class PhpCsFixerView extends PhpCheckstyleBaseView
 
   # Get the error list from the command and display the result
   #
-  # err      Any errors occured via exec
-  # stdout   Overall standard output
-  # stderr   Overall standard errors
-  # command  The fixer command
-  display: (err, stdout, stderr, command) ->
-    report = command.process(err, stdout, stderr)
-
+  # report The fixer report
+  display: (report) ->
     list = []
     if report.length > 0
       for reportItem in report

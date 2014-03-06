@@ -14,18 +14,8 @@ class PhpCheckstyleView extends PhpCheckstyleBaseView
 
   # Get the error list from the command and display the result
   #
-  # err           Any errors occured via exec
-  # stdout        Overall standard output
-  # stderr        Overall standard errors
-  # shellCommands The command objects we will interrogate for data
-  display: (err, stdout, stderr, shellCommands) ->
-    reportList = []
-    for command in shellCommands
-      commandReportList = command.process(err, stdout, stderr)
-
-      for listItem in commandReportList
-        reportList.push listItem
-
+  # reportList The list of errors from the reports
+  display: (reportList) ->
     editorView = atom.workspaceView.getActiveView()
     @checkstyleList = []
     fileList = []
