@@ -13,7 +13,7 @@ class PhpCsFixerView extends PhpCheckstyleBaseView
   # Get the error list from the command and display the result
   #
   # report The fixer report
-  display: (report) ->
+  process: (report) ->
     list = []
     if report.length > 0
       for reportItem in report

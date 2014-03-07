@@ -15,7 +15,7 @@ class PhpCheckstyleView extends PhpCheckstyleBaseView
   # Get the error list from the command and display the result
   #
   # reportList The list of errors from the reports
-  display: (reportList) ->
+  process: (reportList) ->
     editorView = atom.workspaceView.getActiveView()
     @checkstyleList = []
     fileList = []

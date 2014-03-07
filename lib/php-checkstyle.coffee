@@ -8,13 +8,15 @@ class PhpCheckstyle
 
   # Instantiate the views
   #
-  # listView   The basic sniffer view
-  # fixerView  The PHP-CS-Fixer view
-  # gutterView The gutter view
-  constructor: (listView, fixerView, gutterView)->
+  # listView      The basic sniffer view
+  # fixerView     The PHP-CS-Fixer view
+  # gutterView    The gutter view
+  # statusbarView The status bar view
+  constructor: (listView, fixerView, gutterView, statusbarView)->
     @listView = listView
     @fixerView = fixerView
     @gutterView = gutterView
+    @statusbarView = statusbarView
 
     atom.workspaceView.command "php-checkstyle:sniff-this-file", => @sniffFile()
     atom.workspaceView.command "php-checkstyle:fix-this-file", => @fixFile()
@@ -68,8 +70,9 @@ class PhpCheckstyle
 
       @checkstyleList[editorView.id] = reportList
 
-      @listView.display reportList
-      @gutterView.display reportList
+      @listView.process reportList
+      @gutterView.process reportList
+      @statusbarView.process reportList
 
     editorView.on 'editor:display-updated', =>
       @gutterView.render()
@@ -95,6 +98,6 @@ class PhpCheckstyle
 
     command.execute (err, stdout, stderr) =>
       report = fixer.process(err, stdout, stderr)
-      @fixerView.display report
+      @fixerView.process report
 
 module.exports = PhpCheckstyle

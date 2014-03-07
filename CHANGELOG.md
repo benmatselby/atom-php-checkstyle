@@ -3,6 +3,7 @@
 ##next
 * Structural changes to decouple app from views
 * Decoupled gutter view with list view
+* Ability to have the error displayed just above the status bar
 
 ##0.9.0
 * Do not show list view if file is clean. Thanks to [postcasio](https://github.com/postcasio).

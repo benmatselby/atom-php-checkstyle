@@ -1,13 +1,14 @@
+# Gutter view for the plugin
 class PhpCheckstyleGutterView
 
   # Instantiation
   constructor: ->
     @checkstyleList = []
 
-  # Render items into the gutter
+  # Process the report data
   #
   # reportList The list of errors from the reports
-  display: (reportList) ->
+  process: (reportList) ->
     return unless atom.config.get "php-checkstyle.renderGutterMarks"
 
     editorView = atom.workspaceView.getActiveView()
