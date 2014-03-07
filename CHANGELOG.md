@@ -1,9 +1,9 @@
 #The Changelog
 
-##next
+##0.10.0
 * Structural changes to decouple app from views
 * Decoupled gutter view with list view
-* Ability to have the error displayed just above the status bar
+* Ability to have the error displayed just above the status bar. [Implements GH-11](https://github.com/benmatselby/atom-php-checkstyle/issues/11)
 
 ##0.9.0
 * Do not show list view if file is clean. Thanks to [postcasio](https://github.com/postcasio).
