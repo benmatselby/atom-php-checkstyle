@@ -1,4 +1,5 @@
 {exec} = require 'child_process'
+_ = require 'underscore-plus'
 
 # Wrapper class for all shell commands
 # Provides shelling out commands so it is performed in one place
@@ -45,7 +46,7 @@ class CommandPhpcs
     pattern = /.*line="(.+?)" column="(.+?)" severity="(.+?)" message="(.*)" source.*/g
     errorList = []
     while (line = pattern.exec(stdout)) isnt null
-      item = [line[1], line[4]]
+      item = [line[1], _.unescape(line[4])]
       errorList.push item
     return errorList
 
@@ -97,7 +98,7 @@ class CommandMessDetector
     pattern = /.*:(\d+)[ \t]+(.*)/g
     errorList = []
     while (line = pattern.exec(stdout)) isnt null
-      item = [line[1], line[2]]
+      item = [line[1], _.unescape(line[2])]
       errorList.push item
     return errorList
 

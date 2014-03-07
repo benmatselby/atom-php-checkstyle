@@ -49,6 +49,21 @@ describe "CommandPhpcs", ->
     report = phpcs.process('', stdout, '')
     expect(report).toEqual([])
 
+  it 'should unescape html errors into text', ->
+    phpcs = new commands.CommandPhpcs('/path/to/file', {})
+
+    stdout = """
+    <?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="1.5.2">
+<file name="/path/to/a/file">
+<error line="160" column="78" severity="error" message="Class name &quot;Class_Name&quot; is not in camel caps format" source="PSR2.Files.EndFileNewline.TooMany"/>
+</file>
+</checkstyle>
+    """
+
+    report = phpcs.process('', stdout, '')
+    expect(report).toEqual([['160', 'Class name "Class_Name" is not in camel caps format']])
+
 
 describe "CommandPhpcsFixer", ->
   it 'should build the basic command with the config options passed', ->
@@ -115,3 +130,13 @@ describe "CommandMessDetector", ->
 
     report = messDetector.process('', stdout, '')
     expect(report).toEqual([['87', "Avoid unused local variables such as '$unused'."]])
+
+  it "should unescape html errors into text", ->
+    messDetector = new commands.CommandMessDetector('/path/to/file', {})
+
+    stdout = """
+/path/to/file:87	Avoid unused local variables such as &quot;$unused&quot;.
+    """
+
+    report = messDetector.process('', stdout, '')
+    expect(report).toEqual([['87', 'Avoid unused local variables such as "$unused".']])
