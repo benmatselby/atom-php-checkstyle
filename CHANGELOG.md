@@ -1,5 +1,8 @@
 #The Changelog
 
+##0.11.0
+* Ability to toggle gutter marks on|off. [Implements GH-14](https://github.com/benmatselby/atom-php-checkstyle/issues/14)
+
 ##0.10.0
 * Structural changes to decouple app from views
 * Decoupled gutter view with list view
