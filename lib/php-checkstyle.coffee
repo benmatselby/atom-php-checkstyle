@@ -36,7 +36,7 @@ class PhpCheckstyle
       return
 
     shellCommands = []
-    
+
     editorPath = editor.getPath().replace(/([\'\s])/g, "\\$1")
 
     if atom.config.get("php-checkstyle.shouldExecuteLinter") is true
@@ -58,7 +58,7 @@ class PhpCheckstyle
         'executablePath': atom.config.get("php-checkstyle.phpmdExecutablePath"),
         'ruleSets': atom.config.get("php-checkstyle.phpmdRuleSets")
       })
-      shellCommands.push(messDetector)g
+      shellCommands.push(messDetector)
 
     shell = new commands.Shell(shellCommands)
 
@@ -94,7 +94,7 @@ class PhpCheckstyle
       'executablePath': executablePath,
       'level': level
     }
-    
+
     editorPath = editor.getPath().replace(/([\'\s])/g, "\\$1")
 
     fixer = new commands.CommandPhpcsFixer(editorPath, config)
