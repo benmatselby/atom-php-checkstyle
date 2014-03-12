@@ -1,5 +1,8 @@
 #The Changelog
 
+##next
+* Bug Fix: GH-15 - escape file paths. Thanks to [Percy Hatcherson](https://github.com/primitive-type) for the patch
+
 ##0.11.0
 * Ability to toggle gutter marks on|off. [Implements GH-14](https://github.com/benmatselby/atom-php-checkstyle/issues/14)
 

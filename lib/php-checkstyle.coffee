@@ -37,16 +37,16 @@ class PhpCheckstyle
 
     shellCommands = []
 
-    editorPath = editor.getPath().replace(/([\'\s])/g, "\\$1")
+    filePath = editor.getPath().replace(/([\'\s])/g, "\\$1")
 
     if atom.config.get("php-checkstyle.shouldExecuteLinter") is true
-      linter = new commands.CommandLinter(editorPath, {
+      linter = new commands.CommandLinter(filePath, {
         'executablePath': atom.config.get "php-checkstyle.phpPath"
       })
       shellCommands.push(linter)
 
     if atom.config.get("php-checkstyle.shouldExecutePhpcs") is true
-      phpcs = new commands.CommandPhpcs(editorPath, {
+      phpcs = new commands.CommandPhpcs(filePath, {
         'executablePath': atom.config.get("php-checkstyle.phpcsExecutablePath"),
         'standard': atom.config.get("php-checkstyle.phpcsStandard"),
         'warnings': atom.config.get("php-checkstyle.phpcsDisplayWarnings")
@@ -54,7 +54,7 @@ class PhpCheckstyle
       shellCommands.push(phpcs)
 
     if atom.config.get("php-checkstyle.shouldExecutePhpmd") is true
-      messDetector= new commands.CommandMessDetector(editorPath, {
+      messDetector= new commands.CommandMessDetector(filePath, {
         'executablePath': atom.config.get("php-checkstyle.phpmdExecutablePath"),
         'ruleSets': atom.config.get("php-checkstyle.phpmdRuleSets")
       })
@@ -95,9 +95,9 @@ class PhpCheckstyle
       'level': level
     }
 
-    editorPath = editor.getPath().replace(/([\'\s])/g, "\\$1")
+    filePath = editor.getPath().replace(/([\'\s])/g, "\\$1")
 
-    fixer = new commands.CommandPhpcsFixer(editorPath, config)
+    fixer = new commands.CommandPhpcsFixer(filePath, config)
     command = new commands.Shell([fixer])
 
     command.execute (err, stdout, stderr) =>
