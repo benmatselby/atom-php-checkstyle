@@ -17,6 +17,7 @@ module.exports =
     phpmdRuleSets: 'codesize,cleancode,controversial,naming,unusedcode'
     renderGutterMarks: true
     renderStatusBar: true
+    renderListView: true
     shouldExecutePhpcs: true
     shouldExecutePhpmd: true
     shouldExecuteLinter: true
