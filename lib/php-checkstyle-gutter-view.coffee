@@ -4,6 +4,7 @@ class PhpCheckstyleGutterView
   # Instantiation
   constructor: ->
     @checkstyleList = []
+    @gutterStyles = ['php-checkstyle-sniff-error', 'php-checkstyle-sniff-warning', 'php-checkstyle-report-phpcs', 'php-checkstyle-report-phpmd', 'php-checkstyle-report-lint']
 
   # Process the report data
   #
@@ -13,12 +14,7 @@ class PhpCheckstyleGutterView
 
     editorView = atom.workspaceView.getActiveView()
 
-    gutterList = []
-    for row in reportList
-      line = row[0]
-      gutterList.push(line)
-
-    @checkstyleList[editorView.id] = gutterList
+    @checkstyleList[editorView.id] = reportList
     @render()
 
   # Render said gutter
@@ -29,9 +25,11 @@ class PhpCheckstyleGutterView
     return unless @checkstyleList[editorView.id]
 
     gutter = editorView.gutter
-    gutter.removeClassFromAllLines('php-checkstyle-sniff-error')
+
+    for gutterStyle in @gutterStyles
+      gutter.removeClassFromAllLines(gutterStyle)
 
     for line in @checkstyleList[editorView.id]
-      gutter.addClassToLine(line - 1, 'php-checkstyle-sniff-error')
+      gutter.addClassToLine(line[0] - 1, line[2])
 
 module.exports = PhpCheckstyleGutterView

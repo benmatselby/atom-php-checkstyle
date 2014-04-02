@@ -4,8 +4,32 @@
 // for a full listing of what's available.
 @import "ui-variables";
 
+@background-color-phpcs: #3292B8;
+@background-color-phpmd: #A087DE;
+@background-color-lint: @background-color-error;
+
 .php-checkstyle-sniff-error {
   background: @background-color-error;
+  color: #FFF !important;
+}
+
+.php-checkstyle-sniff-warning {
+  background: @background-color-warning;
+  color: #FFF !important;
+}
+
+.php-checkstyle-report-phpcs {
+  background: @background-color-phpcs;
+  color: #FFF !important;
+}
+
+.php-checkstyle-report-lint {
+  background: @background-color-lint;
+  color: #FFF !important;
+}
+
+.php-checkstyle-report-phpmd {
+  background: @background-color-phpmd;
   color: #FFF !important;
 }
 

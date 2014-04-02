@@ -17,6 +17,23 @@ The plugin renders the errors in the following formats, again configurable:
 * Gutter view
 * Status bar view
 
+You can customise the colours used in the gutter by providing your own stylesheet, just override the css colours for
+the 3 CSS classes:
+
+```css
+.php-checkstyle-report-phpcs
+.php-checkstyle-report-phpmd
+.php-checkstyle-report-lint
+```
+
+the defaults colours are:
+
+```css
+@background-color-phpcs: #3292B8;  
+@background-color-phpmd: #A087DE;  
+@background-color-lint: @background-color-error;
+```
+
 ## List View
 ![PHP Checkstyle List View](http://www.soulbroken.co.uk/wp-content/uploads/atom-php-checkstyle-sniffer.png)
 

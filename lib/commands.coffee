@@ -46,7 +46,7 @@ class CommandPhpcs
     pattern = /.*line="(.+?)" column="(.+?)" severity="(.+?)" message="(.*)" source.*/g
     errorList = []
     while (line = pattern.exec(stdout)) isnt null
-      item = [line[1], _.unescape(line[4])]
+      item = [line[1], _.unescape(line[4]), 'php-checkstyle-report-phpcs']
       errorList.push item
     return errorList
 
@@ -72,7 +72,7 @@ class CommandLinter
     pattern = /(.*) on line (.*)/g
     errorList = []
     while (line = pattern.exec(stdout)) isnt null
-      item = [line[2], line[1]]
+      item = [line[2], line[1], 'php-checkstyle-report-lint']
       errorList.push item
     return errorList
 
@@ -98,7 +98,7 @@ class CommandMessDetector
     pattern = /.*:(\d+)[ \t]+(.*)/g
     errorList = []
     while (line = pattern.exec(stdout)) isnt null
-      item = [line[1], _.unescape(line[2])]
+      item = [line[1], _.unescape(line[2]), 'php-checkstyle-report-phpmd']
       errorList.push item
     return errorList
 
