@@ -1,5 +1,8 @@
 #The Changelog
 
+##0.14.0
+* Bug Fix: [GH-18](https://github.com/benmatselby/atom-php-checkstyle/issues/18). Cancel list view before trying to render it again
+
 ##0.13.0
 * Ability to style the gutter individually for each command. Thanks to [Stuart Grimshaw](https://github.com/Stubbs) for the patch.
 

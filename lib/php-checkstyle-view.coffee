@@ -16,6 +16,10 @@ class PhpCheckstyleView extends PhpCheckstyleBaseView
   # reportList The list of errors from the reports
   process: (reportList) ->
     return unless atom.config.get "php-checkstyle.renderListView"
+
+    # Bug fix for https://github.com/benmatselby/atom-php-checkstyle/issues/18
+    @cancel()
+
     editorView = atom.workspaceView.getActiveView()
     @checkstyleList = []
     fileList = []
