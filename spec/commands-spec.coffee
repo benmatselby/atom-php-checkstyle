@@ -35,7 +35,7 @@ describe "CommandPhpcs", ->
     """
 
     report = phpcs.process('', stdout, '')
-    expect(report).toEqual([['160', 'Expected 1 blank line at end of file; 4 found']])
+    expect(report).toEqual([['160', 'Expected 1 blank line at end of file; 4 found', 'php-checkstyle-report-phpcs']])
 
   it 'should produce an empty report if no errors are found', ->
     phpcs = new commands.CommandPhpcs('/path/to/file', {})
@@ -62,7 +62,7 @@ describe "CommandPhpcs", ->
     """
 
     report = phpcs.process('', stdout, '')
-    expect(report).toEqual([['160', 'Class name "Class_Name" is not in camel caps format']])
+    expect(report).toEqual([['160', 'Class name "Class_Name" is not in camel caps format', 'php-checkstyle-report-phpcs']])
 
 
 describe "CommandPhpcsFixer", ->
@@ -107,7 +107,7 @@ Errors parsing a/random/file/somewhere.php
     """
 
     report = linter.process('', stdout, '')
-    expect(report).toEqual([['76', "Parse error: parse error in a/random/file/somewhere.php"]])
+    expect(report).toEqual([['76', "Parse error: parse error in a/random/file/somewhere.php", 'php-checkstyle-report-lint']])
 
 
 describe "CommandMessDetector", ->
@@ -129,7 +129,7 @@ describe "CommandMessDetector", ->
     """
 
     report = messDetector.process('', stdout, '')
-    expect(report).toEqual([['87', "Avoid unused local variables such as '$unused'."]])
+    expect(report).toEqual([['87', "Avoid unused local variables such as '$unused'.", 'php-checkstyle-report-phpmd']])
 
   it "should unescape html errors into text", ->
     messDetector = new commands.CommandMessDetector('/path/to/file', {})
@@ -139,4 +139,4 @@ describe "CommandMessDetector", ->
     """
 
     report = messDetector.process('', stdout, '')
-    expect(report).toEqual([['87', 'Avoid unused local variables such as "$unused".']])
+    expect(report).toEqual([['87', 'Avoid unused local variables such as "$unused".', 'php-checkstyle-report-phpmd']])

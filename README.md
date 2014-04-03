@@ -29,8 +29,8 @@ the 3 CSS classes:
 the defaults colours are:
 
 ```css
-@background-color-phpcs: #3292B8;  
-@background-color-phpmd: #A087DE;  
+@background-color-phpcs: #3292B8;
+@background-color-phpmd: #A087DE;
 @background-color-lint: @background-color-error;
 ```
 
