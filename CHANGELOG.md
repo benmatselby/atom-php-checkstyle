@@ -1,5 +1,8 @@
 #The Changelog
 
+##0.13.0
+* Ability to style the gutter individually for each command. Thanks to [Stuart Grimshaw](https://github.com/Stubbs) for the patch.
+
 ##0.12.0
 * Bug Fix: GH-15 - escape file paths. Thanks to [Percy Hatcherson](https://github.com/primitive-type) for the patch
 * Ability to toggle list view on|off
