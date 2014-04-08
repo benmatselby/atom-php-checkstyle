@@ -69,7 +69,7 @@ class CommandLinter
   # @param stdout Overall standard output
   # @param stderr Overall standard errors
   process: (error, stdout, stderr) ->
-    pattern = /(.*) on line (.*)/g
+    pattern = /(Parse error.*) on line (.*)/g
     errorList = []
     while (line = pattern.exec(stdout)) isnt null
       item = [line[2], line[1], 'php-checkstyle-report-lint']

@@ -1,5 +1,8 @@
 #The Changelog
 
+##0.15.0
+* Bug Fix: [GH-22](https://github.com/benmatselby/atom-php-checkstyle/issues/22). Need to be a bit stricter on the parser for the linter output
+
 ##0.14.0
 * Bug Fix: [GH-18](https://github.com/benmatselby/atom-php-checkstyle/issues/18). Cancel list view before trying to render it again
 
