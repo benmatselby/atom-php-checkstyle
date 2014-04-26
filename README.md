@@ -1,5 +1,8 @@
 #PHP Checkstyle
 
+[![Build Status](https://travis-ci.org/benmatselby/atom-php-checkstyle.png?branch=master)](https://travis-ci.org/benmatselby/atom-php-checkstyle)
+
+
 This plugin is for the Atom editor from GitHub, and aims to provide “Checkstyle” integration for PHP.
 
 The plugin supports:
