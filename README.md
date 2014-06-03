@@ -48,4 +48,3 @@ the defaults colours are:
 
 This is currently very much work in progress, see [here](https://github.com/benmatselby/atom-php-checkstyle/issues) for features/issues
 
-For more information, please visit [here](http://www.soulbroken.co.uk/code/atom-php-checkstyle/)
