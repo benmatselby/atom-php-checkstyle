@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/benmatselby/atom-php-checkstyle.png?branch=master)](https://travis-ci.org/benmatselby/atom-php-checkstyle)
 
 
+**This plugin is no longer actively maintained as [Atom Linter](https://github.com/atomlinter) has replicated all the functionality I was offering**
+
 This plugin is for the Atom editor from GitHub, and aims to provide “Checkstyle” integration for PHP.
 
 The plugin supports:
