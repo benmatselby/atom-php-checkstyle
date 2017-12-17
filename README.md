@@ -1,4 +1,4 @@
-#PHP Checkstyle
+# PHP Checkstyle
 
 [![Build Status](https://travis-ci.org/benmatselby/atom-php-checkstyle.png?branch=master)](https://travis-ci.org/benmatselby/atom-php-checkstyle)
 
@@ -38,15 +38,3 @@ the defaults colours are:
 @background-color-phpmd: #A087DE;
 @background-color-lint: @background-color-error;
 ```
-
-## List View
-![PHP Checkstyle List View](http://www.soulbroken.co.uk/wp-content/uploads/atom-php-checkstyle-sniffer.png)
-
-## Gutter View
-![PHP Checkstyle Gutter View](http://www.soulbroken.co.uk/wp-content/uploads/atom-php-checkstyle-gutter-view.png)
-
-## Status Bar View
-![PHP Checktyle Status Bar View](http://www.soulbroken.co.uk/wp-content/uploads/atom-php-checkstyle-status-view.png)
-
-This is currently very much work in progress, see [here](https://github.com/benmatselby/atom-php-checkstyle/issues) for features/issues
-
